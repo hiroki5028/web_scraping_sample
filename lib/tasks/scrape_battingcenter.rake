@@ -3,29 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'csv'
 
-namespace :scrape do
-  # task :list_hokkaidou => :environment do
-  #   # スクレイピング先のURL
-  #   url = 'https://www.battingcenter.com/?search-class=DB_CustomSearch_Widget-db_customsearch_widget&widget_number=preset-default&cs--1=70&cs-area-11=&cs-post_title-12=&cs-all-0=&x=61&y=17'
-  #   charset = nil
-  #   html = open(url) do |f|
-  #     charset = f.charset # 文字種別を取得
-  #     f.read # htmlを読み込んで変数htmlに渡す
-  #   end
-  #   # htmlをパース(解析)してオブジェクトを作成
-  #   doc = Nokogiri::HTML.parse(html, nil, charset)
-  #   href = []
-  #   File.open("list_hokkaidou.txt", "w") do |file|
-  #     list = doc.css('div[@class="box3"]//h3//a')
-  #     list.each do |h|
-  #       href.push(h.attr("href"))
-  #     end
-  #     href.each do |v|
-  #       file.write(v + "\n")
-  #     end
-  #   end
-  # end
-
+namespace :scrape_battingcenter do
   task :sitemap => :environment do
     # スクレイピング先のURL
     url = 'https://www.battingcenter.com/sitemap/index.html'
@@ -100,7 +78,7 @@ namespace :scrape do
                 information[h] = bodies[i]
               end
             end
-            
+
           end
           data << information
           if i==0
